@@ -21,27 +21,27 @@ public class Main
     String fileLand = "food-footprints-landuse.csv";
     int repeat = 0;
     //finding rows for arrays
-    int csvSize = file.csvSize(fileCarbon);
-    System.out.println(csvSize);
-    int csvSizeWater = file.csvSize(fileWater);
+    int csvSizeCarbon = file.csvSize(fileCarbon, "rows");
+    System.out.println(csvSizeCarbon);
+    int csvSizeWater = file.csvSize(fileWater, "rows");
     System.out.println(csvSizeWater);
-    int csvSizeLand = file.csvSize(fileLand);
+    int csvSizeLand = file.csvSize(fileLand, "rows");
     System.out.println(csvSizeLand);
     //finding columns for arrays
-    int csvColumns = file.csvColumns(fileCarbon);
-    System.out.println(csvColumns);
-    int csvColumnsWater = file.csvColumns(fileWater);
+    int csvColumnsCarbon = file.csvSize(fileCarbon, "columns");
+    System.out.println(csvColumnsCarbon);
+    int csvColumnsWater = file.csvSize(fileWater, "columns");
     System.out.println(csvColumnsWater);
-    int csvColumnsLand = file.csvColumns(fileLand);
+    int csvColumnsLand = file.csvSize(fileLand, "columns");
     System.out.println(csvColumnsLand);
     //creating arrays
-    String foodprints[][] = new String [csvSize][csvColumns];
+    String foodprintsCarbon[][] = new String [csvSizeCarbon][csvColumnsCarbon];
     String footprintsWater[][] = new String [csvSizeWater][csvColumnsWater];
     String footprintsLand[][] = new String [csvSizeLand][csvColumnsLand];
     //creating save file
     file.fileCreator();
     //gives 2D arrays values from csv
-    foodprints = file.csvToArray(fileCarbon, foodprints);
+    foodprintsCarbon = file.csvToArray(fileCarbon, foodprintsCarbon);
     footprintsWater = file.csvToArray(fileWater, footprintsWater);
     footprintsLand = file.csvToArray(fileLand, footprintsLand);
     //greets user and gives facts
@@ -58,7 +58,7 @@ public class Main
       String food = output.food(category, selection);
       System.out.println(food);
       //tells user the emissions of the food
-      output.gasEmissions(food, foodprints, footprintsWater, footprintsLand);
+      output.gasEmissions(food, foodprintsCarbon, footprintsWater, footprintsLand);
       //confirms user wants to add food to list
       output.confirmAddition(food);
       //asks user if they want to add more

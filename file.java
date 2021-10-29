@@ -69,7 +69,7 @@ public class file
   * 
   * @param file to get the csv file name
   * @param foodprints to get 2D array that needs to be modified
-  * @return String[][] this returns the list of foods
+  * @return String[][] this returns the updated 2D array
   */
   //throws IOException to handle exceptions if coudn't read file
   public static String[][] csvToArray(String file, String[][] foodprints) throws IOException {
@@ -116,18 +116,18 @@ public class file
   * I thought carbon footprint was most important
   *
   * @param foodChoice this is the chosen foodChoice
-  * @param emissions this is the calculated emissions
+  * @param emissionsCarbon this is the calculated emissions
   * @param amount this is the amount of food
   * @param emissionsWater calcualted emissions water
   * @param emissionsLand calulated emissions land
   */
-  public static void writeToFile(String foodChoice, double emissions, double amount, double emissionsWater, double emissionsLand)
+  public static void writeToFile(String foodChoice, double emissionsCarbon, double amount, double emissionsWater, double emissionsLand)
   {
     //writing results to file
     try
     {
       FileWriter myWriter = new FileWriter("shoppinglist.txt", true);
-      myWriter.write("\n" + amount + "kg/L of " + foodChoice + "\nEmissions: " + emissions + "kgCO₂eq Water Use: " + emissionsWater + "L Land Use: " + emissionsLand + "m²");
+      myWriter.write("\n" + amount + "kg/L of " + foodChoice + "\nEmissions: " + emissionsCarbon + "kgCO₂eq Water Use: " + emissionsWater + "L Land Use: " + emissionsLand + "m²");
       myWriter.close();
       System.out.println("Sucessfully wrote to file");
     }
@@ -169,10 +169,12 @@ public class file
   * This method finds the size of the rows in the csv file.
   *
   * @param file this is the name of the csv file
+  * @param type this is the size to be found (row/column)
   * @return int this is the size of the rows
   */
-  public static int csvSize(String file) throws IOException {
-		int lineNum = 0;
+  public static int csvSize(String file, String type) throws IOException {
+		int columns = 0;
+    int lineNum = 0;
     try
     {
 			//reads from the file
@@ -184,7 +186,9 @@ public class file
 			line=infile.readLine();
 
       //checks to ensure there is a value on the line
-			while (line!=null)
+			String data[]=line.split(",");
+      columns = data.length;
+      while (line!=null)
       {
         //goes to the next line
 				line=infile.readLine();
@@ -197,36 +201,8 @@ public class file
     {
 			System.out.println("Incorrect filename or location. Please verify path and filename. ");
 		}
-    return lineNum;
-  }
-  /**
-  * This method finds the total number of columns in
-  * the csv file.
-  *
-  * @param file this is the name of the file
-  * @return int this is the amount of columns
-  */
-  public static int csvColumns(String file) throws IOException {
-		int columns = 0;
-    try
-    {
-      //reads from the file
-      BufferedReader infile = new BufferedReader (new FileReader(file));
-
-			String line;
-			System.out.println("Beginning to read the file now:");
-      //set line to the contents of the file
-			line=infile.readLine();
-			//splits contents and turns it into array elements
-      String data[]=line.split(",");
-      columns = data.length;
-			System.out.println("Closing file.");
-			infile.close();
-      
-		}catch (FileNotFoundException e)
-    {
-			System.out.println("Incorrect filename or location. Please verify path and filename. ");
-		}
+    if (type.equalsIgnoreCase("rows"))
+      return lineNum;
     return columns;
   }
 }

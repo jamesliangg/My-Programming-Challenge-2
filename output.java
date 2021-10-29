@@ -14,7 +14,7 @@ public class output
   //creating global variables
   private static int index = 0;
   private static ImageIcon shoppinglisticon = new ImageIcon("images/shoppinglist.png");
-  public static String emissions = "";
+  public static String emissionsCarbon = "";
   public static String emissionsWater = "";
   public static String emissionsLand = "";
   public static double totalCarbonEmissions = 0;
@@ -117,13 +117,13 @@ public class output
       if (foodprints[i][0].equalsIgnoreCase(foodChoice))
       {
         index = i;
-        emissions = foodprints[index][1];
+        emissionsCarbon = foodprints[index][1];
         emissionsWater = footprintsWater[index][1];
         emissionsLand = footprintsLand[index][1];
       }
     }
     //output telling user findings
-    JOptionPane.showMessageDialog(null, "The carbon emissions of " + foodChoice + " are:\n" + emissions + " kilograms of carbon dioxide per kilogram of food product\n" + emissionsWater + " litres of water per kilogram of food product\n" + emissionsLand + " metres squared of land per kilogram of food product", "Emissions", JOptionPane.INFORMATION_MESSAGE, shoppinglisticon);
+    JOptionPane.showMessageDialog(null, "The carbon emissions of " + foodChoice + " are:\n" + emissionsCarbon + " kilograms of carbon dioxide per kilogram of food product\n" + emissionsWater + " litres of water per kilogram of food product\n" + emissionsLand + " metres squared of land per kilogram of food product", "Emissions", JOptionPane.INFORMATION_MESSAGE, shoppinglisticon);
   }
   /**
   * This method confirms the addition of the food to the
@@ -142,7 +142,7 @@ public class output
     if (confirm == 0)
     {
       double amount = Double.parseDouble(JOptionPane.showInputDialog("How many kilograms/litres do you want?"));
-      double adjustedEmissions = Math.round(amount * Double.parseDouble(emissions) * 100.0)/100.0;
+      double adjustedEmissions = Math.round(amount * Double.parseDouble(emissionsCarbon) * 100.0)/100.0;
       double adjustedEmissionsWater = Math.round(amount * Double.parseDouble(emissionsWater) * 100.0)/100.0;
       double adjustedEmissionsLand = Math.round(amount * Double.parseDouble(emissionsLand) * 100.0)/100.0;
       totalCarbonEmissions += adjustedEmissions;
