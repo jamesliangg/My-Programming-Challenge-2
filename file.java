@@ -1,11 +1,11 @@
 import java.io.File; //file class
-import java.io.IOException; // handles errors
+import java.io.IOException; //handles errors
 import java.io.FileWriter; //file writing
 import java.time.format.DateTimeFormatter; //formatting date
 import java.time.LocalDateTime; //get date and time
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader; //reading csv
+import java.io.FileReader; //reading csv
+import java.io.FileNotFoundException; //handles if file can't be read
 
 /**
 * The file program contains methods that work behind
@@ -164,5 +164,69 @@ public class file
       System.out.println("An error occured ):");
       e.printStackTrace();
     }
+  }
+  /**
+  * This method finds the size of the rows in the csv file.
+  *
+  * @param file this is the name of the csv file
+  * @return int this is the size of the rows
+  */
+  public static int csvSize(String file) throws IOException {
+		int lineNum = 0;
+    try
+    {
+			//reads from the file
+      BufferedReader infile = new BufferedReader (new FileReader(file));
+
+			String line;
+			System.out.println("Beginning to read the file now:");
+      //set line to the contents of the file
+			line=infile.readLine();
+
+      //checks to ensure there is a value on the line
+			while (line!=null)
+      {
+        //goes to the next line
+				line=infile.readLine();
+        lineNum++;
+			}
+			System.out.println("Closing file.");
+			infile.close();
+      
+		}catch (FileNotFoundException e)
+    {
+			System.out.println("Incorrect filename or location. Please verify path and filename. ");
+		}
+    return lineNum;
+  }
+  /**
+  * This method finds the total number of columns in
+  * the csv file.
+  *
+  * @param file this is the name of the file
+  * @return int this is the amount of columns
+  */
+  public static int csvColumns(String file) throws IOException {
+		int columns = 0;
+    try
+    {
+      //reads from the file
+      BufferedReader infile = new BufferedReader (new FileReader(file));
+
+			String line;
+			System.out.println("Beginning to read the file now:");
+      //set line to the contents of the file
+			line=infile.readLine();
+			//splits contents and turns it into array elements
+      String data[]=line.split(",");
+      columns = data.length;
+			System.out.println("Closing file.");
+			infile.close();
+      
+		}catch (FileNotFoundException e)
+    {
+			System.out.println("Incorrect filename or location. Please verify path and filename. ");
+		}
+    return columns;
   }
 }
