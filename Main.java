@@ -21,51 +21,52 @@ public class Main
     String fileLand = "food-footprints-landuse.csv";
     int repeat = 0;
     //finding rows for arrays
-    int csvSizeCarbon = file.csvSize(fileCarbon, "rows");
+    int csvSizeCarbon = Backend.csvSize(fileCarbon, "rows");
     System.out.println(csvSizeCarbon);
-    int csvSizeWater = file.csvSize(fileWater, "rows");
+    int csvSizeWater = Backend.csvSize(fileWater, "rows");
     System.out.println(csvSizeWater);
-    int csvSizeLand = file.csvSize(fileLand, "rows");
+    int csvSizeLand = Backend.csvSize(fileLand, "rows");
     System.out.println(csvSizeLand);
     //finding columns for arrays
-    int csvColumnsCarbon = file.csvSize(fileCarbon, "columns");
+    int csvColumnsCarbon = Backend.csvSize(fileCarbon, "columns");
     System.out.println(csvColumnsCarbon);
-    int csvColumnsWater = file.csvSize(fileWater, "columns");
+    int csvColumnsWater = Backend.csvSize(fileWater, "columns");
     System.out.println(csvColumnsWater);
-    int csvColumnsLand = file.csvSize(fileLand, "columns");
+    int csvColumnsLand = Backend.csvSize(fileLand, "columns");
     System.out.println(csvColumnsLand);
     //creating arrays
     String foodprintsCarbon[][] = new String [csvSizeCarbon][csvColumnsCarbon];
     String footprintsWater[][] = new String [csvSizeWater][csvColumnsWater];
     String footprintsLand[][] = new String [csvSizeLand][csvColumnsLand];
     //creating save file
-    file.fileCreator();
+    Backend.fileCreator();
     //gives 2D arrays values from csv
-    foodprintsCarbon = file.csvToArray(fileCarbon, foodprintsCarbon);
-    footprintsWater = file.csvToArray(fileWater, footprintsWater);
-    footprintsLand = file.csvToArray(fileLand, footprintsLand);
+    foodprintsCarbon = Backend.csvToArray(fileCarbon, foodprintsCarbon);
+    footprintsWater = Backend.csvToArray(fileWater, footprintsWater);
+    footprintsLand = Backend.csvToArray(fileLand, footprintsLand);
     //greets user and gives facts
-    output.greeting();
+    UserInterface.greeting();
     //loops as long as user wants to continue
     do
     {
       //asks user which category
-      String category = output.categoryChoice();
+      String category = UserInterface.categoryChoice();
       System.out.println(category);
       //sets array to values of selected category
-      String selection[] = output.foodOptions(category);
+      String selection[] = UserInterface.foodOptions(category);
       //asks user which food 
-      String food = output.food(category, selection);
+      String food = UserInterface.pickFood(category, selection);
       System.out.println(food);
       //tells user the emissions of the food
-      output.gasEmissions(food, foodprintsCarbon, footprintsWater, footprintsLand);
+      UserInterface.gasEmissions(food, foodprintsCarbon, footprintsWater, footprintsLand);
       //confirms user wants to add food to list
-      output.confirmAddition(food);
+      UserInterface.confirmAddition(food);
       //asks user if they want to add more
-      repeat = output.repetition();
+      repeat = UserInterface.repetition();
     } while (repeat == 0);
     //gives user total carbon emissions from session
-    output.conclusion();
+    double totalCarbonEmissions = UserInterface.conclusion();
+    UserInterface.comparedToOthers(totalCarbonEmissions);
     //exits with exit code 0
     System.exit(0);
   } 

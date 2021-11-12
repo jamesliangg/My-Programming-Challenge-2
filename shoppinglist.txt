@@ -1,0 +1,19 @@
+
+
+New Session at 2021/11/12 15:29:23 UTC
+1.0kg/L of Apples
+Emissions: 0.43kgCO₂eq Water Use: 180.1L Land Use: 0.63m²
+3.0kg/L of Wine
+Emissions: 5.37kgCO₂eq Water Use: 236.7L Land Use: 5.34m²
+2.0kg/L of Oatmeal
+Emissions: 4.96kgCO₂eq Water Use: 964.8L Land Use: 15.2m²
+Total amount of emissions:
+Emissions: 10.76kgCO₂eq Water Use: 1381.6L Land Use: 21.17m²
+
+New Session at 2021/11/12 15:30:53 UTC
+5.0kg/L of Berries & Grapes
+Emissions: 7.65kgCO₂eq Water Use: 2098.0L Land Use: 12.05m²
+3.0kg/L of Dark Chocolate
+Emissions: 139.95kgCO₂eq Water Use: 1621.8L Land Use: 206.88m²
+Total amount of emissions:
+Emissions: 147.6kgCO₂eq Water Use: 3719.8L Land Use: 218.93m²

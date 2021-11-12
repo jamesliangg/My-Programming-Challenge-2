@@ -8,20 +8,22 @@ import java.io.FileReader; //reading csv
 import java.io.FileNotFoundException; //handles if file can't be read
 
 /**
-* The file program contains methods that work behind
+* The Backend program contains methods that work behind
 * the scenes and that deal with files.
 *
 * @author James Liang
 * @version 1.0
 * @since 2021-10-28
 */
-public class file 
+public class Backend 
 {
   /**
   * This method is used to create a file to store
   * future shopping list data and the current
-  * date and time of the session. It doesn't have
-  * any parameters and doesn't return anything
+  * date and time of the session.
+  *
+  * @param N/A there are no parameters
+  * @return void this returns nothing
   */
   public static void fileCreator()
   {
@@ -120,6 +122,7 @@ public class file
   * @param amount this is the amount of food
   * @param emissionsWater calcualted emissions water
   * @param emissionsLand calulated emissions land
+  * @return void this returns nothing
   */
   public static void writeToFile(String foodChoice, double emissionsCarbon, double amount, double emissionsWater, double emissionsLand)
   {
@@ -148,6 +151,7 @@ public class file
   * total for water emissions
   * @param totalLandEmissions this is the calculated
   * total for land emissions
+  * @return void this returns nothing
   */
   public static void writeToFile(double totalCarbonEmissions, double totalWaterEmissions, double totalLandEmissions)
   {
