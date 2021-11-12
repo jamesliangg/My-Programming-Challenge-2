@@ -199,8 +199,11 @@ public class UserInterface
     //Food emissions could for 10-30% of a household's emissions, assume 20%
     //convert to tonne to kg
     double weeklyFoodEmissions = 14.20*1000*0.2/52;
+    //explain assumptions
     JOptionPane.showMessageDialog(null, "The following assumptions are made:\nYou are Canadian\nFood is 20% of your carbon foodprint\nThese groceries are for a week of consumption\n2020 data is reflective of current emissions", "Disclaimer", JOptionPane.INFORMATION_MESSAGE, shoppinglisticon);
+    //find how much more or less carbon emissions in percentage
     double differenceEmissions = Math.round((weeklyFoodEmissions - totalCarbonEmissions)/weeklyFoodEmissions * 100 * 100.0)/100.0;
+    //different response based on if more or less than average Canadian
     if (differenceEmissions < 0)
     {
       JOptionPane.showMessageDialog(null, "You use " + (differenceEmissions * -1) + "% more carbon per capita\ncompared to other Canadians", "Comparison", JOptionPane.INFORMATION_MESSAGE, shoppinglisticon);

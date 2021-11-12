@@ -66,6 +66,7 @@ public class Main
     } while (repeat == 0);
     //gives user total carbon emissions from session
     double totalCarbonEmissions = UserInterface.conclusion();
+    //compares carbon emissions
     UserInterface.comparedToOthers(totalCarbonEmissions);
     //exits with exit code 0
     System.exit(0);
